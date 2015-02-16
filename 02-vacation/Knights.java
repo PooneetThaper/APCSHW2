@@ -20,7 +20,7 @@ public class Knights{
 	    }
 	}
 	printBoard();
-	solve(0,0);
+	solve(numX/2,numY/2);
     }
 
     public void solve(int x, int y){
@@ -40,8 +40,8 @@ public class Knights{
 	next++;
 	printBoard();
 	try{
-	    Thread.sleep(1000);
-	}catch(Exception e){}
+	    Thread.sleep(750);
+	    }catch(Exception e){}
 	solve(x-2,y-1);
 	solve(x-2,y+1);
 	solve(x-1,y+2);

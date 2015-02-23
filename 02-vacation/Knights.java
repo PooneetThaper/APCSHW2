@@ -12,6 +12,7 @@ public class Knights{
     private int[][] moves={{-2,-1},{-2,1},{-1,2},{1,2},
 			   {2,1},{2,-1},{1,-2},{-1,-2}};
     private int statesTried=0;
+    private int successes=0;
 
     
     public Knights(int x, int y, int startX, int startY){
@@ -39,10 +40,6 @@ public class Knights{
 	    return;
 	}
 	
-	if (next> (numX * numY)){
-	    printBoard();
-	    solved = true;
-	}
 
 	if (solved){
 	    System.out.println("You have solved it");
@@ -59,12 +56,6 @@ public class Knights{
 	    }catch (ArrayIndexOutOfBoundsException e){}
 	}
 
-	// <testing>
-	//System.out.println("");
-	
-	System.out.println(statesTried);
-	System.out.println(next);	
-	// </testing>
 	
 	//if previous move was legal, 
 	//it sets current place to next
@@ -72,14 +63,11 @@ public class Knights{
 	if (notStupid){
 	    places[x][y]=next;
 	    next++;
-	    if (statesTried%10000==0){
-		printBoard();	
-		try{
-		    Thread.sleep(2000);
-		}catch(Exception e){}
+	    if (next==25){
+		printBoard();
+		System.out.println(statesTried);
+	        solved = true;
 	    }
-	    
-	    
 
 	    for(int p=0;p<moves.length;p++){
 		solve(x+moves[p][0],y+moves[p][1]);

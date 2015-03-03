@@ -63,7 +63,7 @@ public class Knights{
 	if (notStupid){
 	    places[x][y]=next;
 	    next++;
-	    if (next==25){
+	    if (next==26){
 		printBoard();
 		System.out.println(statesTried);
 	        solved = true;

@@ -7,27 +7,23 @@ public class Merging{
 	while (a.size()>0 && b.size()>0){
 	    if (a.get(0) < b.get(0)){
 		c.add(a.remove(0));
-		System.out.println(c);
 	    }
 	    else {
 		c.add(b.remove(0));
-		System.out.println(c);
 	    }
 	}
-	System.out.println("");
 	
 	while (a.size()>0){
 		c.add(a.remove(0));
-		System.out.println(c);
 	}
         while (b.size()>0){
 		c.add(b.remove(0));
-		System.out.println(c);
 	}
 	return c;
     }
 
     public ArrayList<Integer> msort(ArrayList<Integer> L){
+
 	if (L.size()<=1) return L;
 	else {
 	    int d=L.size()/2;
@@ -41,9 +37,7 @@ public class Merging{
 		b.add(L.get(i));
 	    }
 
-	    ArrayList<Integer> c= merge(msort(a),msort(b));
-	    System.out.println(c);
-	    return c;
+	    return merge(msort(a),msort(b));
 	}
     }
 
@@ -51,7 +45,7 @@ public class Merging{
 	Merging m = new Merging();
 	ArrayList<Integer> b=new ArrayList<Integer>();
 	ArrayList<Integer> a=new ArrayList<Integer>();
-	for (int i=0; i<10; i++){
+	for (int i=0; i<5; i++){
 	    a.add((int)Math.ceil(Math.random()*100));
 	    b.add((int)Math.ceil(Math.random()*100));
 	}

@@ -1,0 +1,27 @@
+public class sort{
+
+    private int[] a= {7,5,8,4,1,9,6,2,3,0);
+
+    public sort(){
+	//a= new int[10];
+    }
+    
+    public void pivot(){
+	int[] b= new int[10];
+	int pivot= (int)Math.floor(Math.random()10);
+	int lowIndex=0;
+	int highIndex=a.length-1;
+	
+	for (int i=0;i<a.length;i++){
+	    if (a[i]<pivot){
+		b[lowIndex]=a[i];
+		lowIndex++;
+	    }
+	    if (a[i]>pivot){
+		b[highIndex]=a[i];
+		highIndex--;
+	    }
+	}
+    }
+    
+}

@@ -41,6 +41,10 @@ public class LList{
 	len++;
 	
     }
+
+    public int size(){
+	return len;
+    }
     //commented out because they have the same input
     /*
     public int remove(int n){
@@ -50,6 +54,7 @@ public class LList{
 	    if (count==n){
 		i=tmp.getNext().getData();
 		tmp.setNext(tmp.getNext().getNext());
+		len--;
 		break;
 	    }
 	    count++;
@@ -62,6 +67,7 @@ public class LList{
 	for (Node tmp=l; tmp!=null;tmp=tmp.getNext()){
 	    if (tmp.getData()==i){
 		tmp.setNext(tmp.getNext().getNext());
+		len--;
 		return true;
 	    }
 	    count++;

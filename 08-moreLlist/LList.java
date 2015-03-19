@@ -1,7 +1,16 @@
 public class LList{
-    private Node l=new Node(-1);
+    private Node l;
     private int len;
+
+    public LList(){
+	l=new Node(-1);
+    }
     
+    public LLit getLLit(){
+	LLit i = new LLit(l.getNext());
+	return i;
+    }
+
     public void add(int i){
 	Node tmp = new Node(i);
 	tmp.setNext(l.getNext());
@@ -64,8 +73,8 @@ public class LList{
     */
     public boolean remove(int i){
 	int count=0;
-	for (Node tmp=l; tmp!=null;tmp=tmp.getNext()){
-	    if (tmp.getData()==i){
+	for (Node tmp=l; tmp.getNext()!=null;tmp=tmp.getNext()){
+	    if (tmp.getNext().getData()==i){
 		tmp.setNext(tmp.getNext().getNext());
 		len--;
 		return true;

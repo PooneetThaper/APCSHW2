@@ -3,7 +3,7 @@ import java.util.*;
 
 public class LList<E> implements Iterable<E>{
 		private Node<E> l;
-		
+
 		public LList(){
 				l = new Node<E>();
 		}
@@ -12,15 +12,13 @@ public class LList<E> implements Iterable<E>{
 				LLit<E> i = new LLit<E>(l.getNext());
 				return i;
 		}
-		
 
-		
 		public void add(E s){
 				Node<E> tmp = new Node<E>(s);
 				tmp.setNext(l.getNext());
 				l.setNext(tmp);
 		}
-		
+
 		public String toString(){
 				String s = "";
 				Node<E> tmp;;

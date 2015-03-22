@@ -28,13 +28,24 @@ public class Driver{
 				System.out.println(l2);
 
 				Iterator<String> i = l.iterator();
-				while (i.hasNext())
-							 System.out.println(i.next());
-				
+
+//trying to test remove
+//see for each loop at end for result
+				System.out.println(i.next());
+				System.out.println(i.next());
+				i.remove();
+				System.out.println("");
+				System.out.println(i.next());
+				System.out.println(i.next());
+				i.remove();
+
+				System.out.println("");
+//end of remove testing
+
 				Iterator<Integer> i2 = l2.iterator();
 				while (i2.hasNext())
 							 System.out.println(i2.next());
-				
+
 				System.out.println("-----------------");
 
 				// Java foreach or for in loop
@@ -48,7 +59,6 @@ public class Driver{
 						System.out.print(j+", ");
 				}
 				System.out.println();
-				
-				
+
 		}
 }

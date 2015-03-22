@@ -2,11 +2,11 @@ import java.io.*;
 import java.util.*;
 
 public class LLit<E> implements Iterator<E>{
-		private Node<E> t;
-		private Node<E> t1;
+		private Node<E> t,t1,t2;
 		public LLit(Node<E> n){
 				t=n;
-				
+				t1=null;
+				t2=null;
 		}
 
 		public boolean hasNext(){
@@ -15,14 +15,19 @@ public class LLit<E> implements Iterator<E>{
 
 		public E next(){
 				E retval = t.getData();
+				if(t1!=null) t2=t1;
 				t1=t;
 				t=t.getNext();
 				return retval;
 		}
 
 		public void remove(){
-		    t1.setNext(t.getNext());
-		    t=t1.getNext();
+				if(t2==null){
+						t1=null;
+				}else{
+						t1=t2;
+		    		t1.setNext(t);
+				}
 		}
-}
 
+}

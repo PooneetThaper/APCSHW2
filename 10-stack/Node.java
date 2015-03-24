@@ -1,8 +1,20 @@
 public class Node<E>{
     private E data;
-    private Node<E> above;
-    private Node<E> below;
+    private Node<E> above;//what is ontop of this
+    private Node<E> next;//what is below this
 
+    public Node(){
+	data=null;
+	above=null;
+	next=null;
+    }
+
+    public Node(E data){
+	data=this.data;
+	above=null;
+	next=null;
+    }
+    
     public E getData(){
 	return data;
     }
@@ -19,11 +31,11 @@ public class Node<E>{
 	above=input;
     }
 
-    public Node<E> getBelow(){
-	return below;
+    public Node<E> getNext(){
+	return next;
     }
 
-    public void setBelow(Node<E> input){
-	below=input;
+    public void setNext(Node<E> input){
+	next=input;
     }
 }

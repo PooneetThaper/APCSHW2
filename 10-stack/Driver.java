@@ -15,6 +15,7 @@ public class Driver{
 	while(!m.empty()){
 	    System.out.print(m.pop()+", ");
 	}
+	System.out.print("\n");
 
 	System.out.println("Empty: "+m.empty());
     }

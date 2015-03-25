@@ -2,13 +2,13 @@ public class myStack<E>{
     
     private Node<E> top,base;
 
-    public myStack<E>(){
-	base=new Node<E>(-1);
+    public myStack(){
+	base=new Node();
 	top=base;
     }
 
     public void push(E data){
-	Node<E> n= new Node<E>(data);
+	Node<E> n= new Node(data);
 	n.setNext(top);
 	top.setAbove(n);
 	top=n;

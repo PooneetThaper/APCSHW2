@@ -9,8 +9,8 @@ public class Node<E>{
 	next=null;
     }
 
-    public Node(E data){
-	data=this.data;
+    public Node(E input){
+	data=input;
 	above=null;
 	next=null;
     }

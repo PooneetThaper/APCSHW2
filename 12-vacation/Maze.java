@@ -6,14 +6,14 @@ public class Maze
     private char[][] board;
     private int maxX;
     private int maxY;
-    private frontier f;
 
     private char path='#';
     private char wall=' ';
-    private char me='z';
+    private char start='z';
     private char exit='$';
     private char visited = '.';
     private boolean solved = false;
+    private frontier f;
 
     public void delay(int n){
 	try {
@@ -23,7 +23,12 @@ public class Maze
 
     public Maze()
     {
-	f=new myQueue();
+	//breadth
+	//f=new myQueue();
+
+	//depth
+	f=new myStack();
+
 	maxX=40;
 	maxY=20;
 	board = new char[maxX][maxY];
@@ -68,38 +73,48 @@ public class Maze
     public void solve(int x, int y){
 	//frontier put as instance variable for
 	//use by multiple methods
-	int[] start= {x,y};
+	int[][] start= {{x,y},{x,y}};
 	f.enqueue(start);
 	while(!f.empty()){
-	    int[] current=(int[])f.dequeue();
-	    System.out.println(this);
+	    int[][] dequeued=(int[][])f.dequeue();
+	    int[] current=(int[])dequeued[0];
 	    if (board[current[0]][current[1]]==exit){
 		solved=true;
 		break;
 	    }else{
-		check(current[0]+1,current[1]);
-		check(current[0],current[1]-1);
-		check(current[0]-1,current[1]);
-		check(current[0],current[1]+1);
+		if(board[current[0]][current[1]]!='z')
+		    board[current[0]][current[1]]='.';
+		System.out.println(this);
+		check(current[0]+1,current[1],current);
+		check(current[0],current[1]-1,current);
+		check(current[0]-1,current[1],current);
+		check(current[0],current[1]+1,current);
 	    }
-	    board[current[0]][current[1]]='.';
+	    try{
+		//Thread.sleep(100);
+	    }catch(Exception e){}
+	}
+	if (solved){
+
 	}
     }
 
-    public void check(int x, int y){
+    public void check(int x, int y, int[] current){
 	if (board[x][y]==wall ||
-	    board[x][y]==visited){
+	    board[x][y]==visited||
+	    x==maxX-1|| y==maxY-1){
 	    return;
 	}else{
 	    int[] a={x,y};
-	    f.enqueue(a);
+	    int[][] full={a,current};
+	    f.enqueue(full);
 	}
     }
 
     public static void main(String[] args){
-	Maze m = new Maze();/*
+	Maze m = new Maze();
 	System.out.println(m);
-	m.solve(1,1);*/
+	m.solve(1,1);
 	System.out.println(m);
 
     }

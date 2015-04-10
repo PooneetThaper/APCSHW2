@@ -1,23 +1,17 @@
 public class myQueue<E> implements frontier<E>{
 
-    private Node<E> first,base;
+    private Node<E> first,last;
 
     public myQueue(){
-	base=new Node();
     }
 
     public void enqueue(E data){
 	Node<E> n= new Node(data);
 	if (first==null){
-	    n.setNext(base);
-	    base.setBefore(n);
 	    first=n;
+	    last=n;
 	}else{
-	    Node<E> last=base.getBefore();
-	    n.setNext(base);
 	    last.setNext(n);
-	    base.setBefore(n);
-	    n.setBefore(last);
 	    last=n;
 	}
     }
@@ -25,14 +19,13 @@ public class myQueue<E> implements frontier<E>{
     public E dequeue(){
 	E retval=first.getData();
 	Node<E> temp= first.getNext();
-	temp.setBefore(null);
 	first.setNext(null);
-	if(temp!=base) first=temp;
+	first=temp;
 	return retval;
     }
 
     public boolean empty(){
-	return base.getBefore()==null;
+	return first==null;
     }
 
     public E head(){
@@ -42,8 +35,7 @@ public class myQueue<E> implements frontier<E>{
     public static void main(String[] args){
 	myQueue f=new myQueue();
 	for(int i=0;i<10;i++){
-	    int[] a={i,i+1};
-	    f.enqueue(a);
+	    f.enqueue(i);
 	}
 	System.out.println(f.head());
 	System.out.println(f.empty());

@@ -1,4 +1,4 @@
-public class myQueue<E>{
+public class myQueue<E> implements frontier<E>{
 
     private Node<E> first,base;
 
@@ -8,18 +8,18 @@ public class myQueue<E>{
 
     public void enqueue(E data){
 	Node<E> n= new Node(data);
-  if (first==null){
-    n.setNext(base);
-    base.setBefore(n);
-    first=n;
-  }else{
-    Node<E> last=base.getBefore();
-    n.setNext(base);
-    last.setNext(n);
-    base.setBefore(n);
-    n.setBefore(last);
-    last=n;
-  }
+	if (first==null){
+	    n.setNext(base);
+	    base.setBefore(n);
+	    first=n;
+	}else{
+	    Node<E> last=base.getBefore();
+	    n.setNext(base);
+	    last.setNext(n);
+	    base.setBefore(n);
+	    n.setBefore(last);
+	    last=n;
+	}
     }
 
     public E dequeue(){
@@ -27,7 +27,7 @@ public class myQueue<E>{
 	Node<E> temp= first.getNext();
 	temp.setBefore(null);
 	first.setNext(null);
-  if(temp!=base) first=temp;
+	if(temp!=base) first=temp;
 	return retval;
     }
 
@@ -42,12 +42,13 @@ public class myQueue<E>{
     public static void main(String[] args){
 	myQueue f=new myQueue();
 	for(int i=0;i<10;i++){
-	    f.enqueue(i);
+	    int[] a={i,i+1};
+	    f.enqueue(a);
 	}
 	System.out.println(f.head());
 	System.out.println(f.empty());
 	while(!f.empty()){
-	    System.out.println(f.dequeue()+", ");
+	    System.out.print(f.dequeue()+", ");
 	}
 	System.out.println("");
 	System.out.println(f.empty());

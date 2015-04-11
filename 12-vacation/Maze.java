@@ -9,11 +9,13 @@ public class Maze
 
     private char path='#';
     private char wall=' ';
-    private char start='z';
+    private char solution='z';
     private char exit='$';
     private char visited = '.';
     private boolean solved = false;
+
     private frontier f;
+    private int[][][] board2;
 
     public void delay(int n){
 	try {
@@ -24,14 +26,15 @@ public class Maze
     public Maze()
     {
 	//breadth
-	//f=new myQueue();
+	f=new myQueue();
 
 	//depth
-	f=new myStack();
+	//f=new myStack();
 
 	maxX=40;
 	maxY=20;
 	board = new char[maxX][maxY];
+	board2= new int[maxX][maxY][];
 
 	try {
 
@@ -73,13 +76,16 @@ public class Maze
     public void solve(int x, int y){
 	//frontier put as instance variable for
 	//use by multiple methods
-	int[][] start= {{x,y},{x,y}};
+	int[]open={x,y};
+	int[][] start= {open,open};
+	board2[x][y]=open;
 	f.enqueue(start);
 	while(!f.empty()){
 	    int[][] dequeued=(int[][])f.dequeue();
 	    int[] current=(int[])dequeued[0];
 	    if (board[current[0]][current[1]]==exit){
 		solved=true;
+		retraceSteps(current);
 		break;
 	    }else{
 		if(board[current[0]][current[1]]!='z')
@@ -94,9 +100,6 @@ public class Maze
 		//Thread.sleep(100);
 	    }catch(Exception e){}
 	}
-	if (solved){
-
-	}
     }
 
     public void check(int x, int y, int[] current){
@@ -105,10 +108,20 @@ public class Maze
 	    x==maxX-1|| y==maxY-1){
 	    return;
 	}else{
+	    board2[x][y]=current;
 	    int[] a={x,y};
 	    int[][] full={a,current};
 	    f.enqueue(full);
 	}
+    }
+
+    public void retraceSteps(int[] current){
+	while (current!=board2[current[0]][current[1]]){
+	    if (board[current[0]][current[1]]!=exit)
+		board[current[0]][current[1]]=solution;
+	    current=board2[current[0]][current[1]];
+	}
+	board[current[0]][current[1]]='O';
     }
 
     public static void main(String[] args){

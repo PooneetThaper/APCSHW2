@@ -26,10 +26,10 @@ public class Maze
     public Maze()
     {
 	//breadth
-	f=new myQueue();
+	//f=new myQueue();
 
 	//depth
-	//f=new myStack();
+	f=new myStack();
 
 	maxX=40;
 	maxY=20;
@@ -38,7 +38,7 @@ public class Maze
 
 	try {
 
-	    Scanner sc = new Scanner(new File("maze.dat"));
+	    Scanner sc = new Scanner(new File("maze2.dat"));
 	    int j=0;
 	    while (sc.hasNext())
 		{
@@ -97,7 +97,7 @@ public class Maze
 		check(current[0],current[1]+1,current);
 	    }
 	    try{
-		//Thread.sleep(100);
+		Thread.sleep(5);
 	    }catch(Exception e){}
 	}
     }

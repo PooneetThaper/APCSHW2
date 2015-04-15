@@ -26,10 +26,12 @@ public class Maze
     public Maze()
     {
 	//breadth
-	//f=new myQueue();
+	f=new myQueue();
 
 	//depth
-	f=new myStack();
+	//f=new myStack();
+
+	//best first search
 
 	maxX=40;
 	maxY=20;
@@ -38,7 +40,7 @@ public class Maze
 
 	try {
 
-	    Scanner sc = new Scanner(new File("maze2.dat"));
+	    Scanner sc = new Scanner(new File("maze.dat"));
 	    int j=0;
 	    while (sc.hasNext())
 		{

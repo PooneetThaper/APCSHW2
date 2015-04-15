@@ -5,7 +5,7 @@ public class myQueue<E> implements frontier<E>{
     public myQueue(){
     }
 
-    public void enqueue(E data){
+    public void lowenqueue(E data){
 	Node<E> n= new Node(data);
 	if (first==null){
 	    first=n;
@@ -13,6 +13,17 @@ public class myQueue<E> implements frontier<E>{
 	}else{
 	    last.setNext(n);
 	    last=n;
+	}
+    }
+
+    public void highenqueue(E data){
+	Node<E> n= new Node(data);
+	if (first==null){
+	    first=n;
+	    last=n;
+	}else{
+	    n.setNext(first);
+	    first=n;
 	}
     }
 

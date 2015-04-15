@@ -16,6 +16,7 @@ public class Maze
 
     private frontier f;
     private int[][][] board2;
+    private int[] exit;
 
     public void delay(int n){
 	try {
@@ -113,6 +114,7 @@ public class Maze
 	    board2[x][y]=current;
 	    int[] a={x,y};
 	    int[][] full={a,current};
+	    //if closer to exit,put in right place
 	    f.enqueue(full);
 	}
     }

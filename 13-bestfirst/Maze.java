@@ -16,7 +16,7 @@ public class Maze
 
     private frontier f;
     private int[][][] board2;
-    private int[] exit;
+    private int[] exitLocation;
 
     public void delay(int n){
 	try {
@@ -56,7 +56,21 @@ public class Maze
 	catch (Exception e)
 	    {
 	    }
+	
+	findExit();
+    }
 
+    public void findExit(){
+	for (int i=0;i<maxX;i++){
+	    for (int j=0;j<maxY;j++){
+		if (board[i][j]=='$'){
+		    exitLocation= new int[2];
+		    exitLocation[0]=i;
+		    exitLocation[1]=j;
+		    break;
+		}
+	    }
+	}
     }
 
     public String toString()
@@ -113,10 +127,16 @@ public class Maze
 	}else{
 	    board2[x][y]=current;
 	    int[] a={x,y};
-	    int[][] full={a,current};
+	    int[][] full={a,current,{distanceFromExit(x,y)}};
 	    //if closer to exit,put in right place
 	    f.enqueue(full);
 	}
+    }
+
+    public int distanceFromExit(int x, int y){
+	int xDist=Math.abs(exitLocation[0]-x);
+	int yDist=Math.abs(exitLocation[1]-y);
+	return xDist + yDist;
     }
 
     public void retraceSteps(int[] current){

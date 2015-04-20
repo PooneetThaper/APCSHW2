@@ -5,25 +5,34 @@ public class myQueue<E> implements frontier<E>{
     public myQueue(){
     }
 
-    public void lowenqueue(E data){
+    public void enqueue(E data){
+	int[][] input=(int[][])data;
 	Node<E> n= new Node(data);
 	if (first==null){
 	    first=n;
 	    last=n;
 	}else{
-	    last.setNext(n);
-	    last=n;
-	}
-    }
-
-    public void highenqueue(E data){
-	Node<E> n= new Node(data);
-	if (first==null){
-	    first=n;
-	    last=n;
-	}else{
-	    n.setNext(first);
-	    first=n;
+	    int[][] firstData=(int[][])first.getData();
+	    int[][] lastData=(int[][])last.getData();
+	    if(input[2][0]<firstData[2][0]){
+		n.setNext(first);
+		first=n;
+	    }else if(input[2][0]<lastData[2][0]){
+		Node temp=first;
+		Node temp1=first.getNext();
+		while (temp1.getNext()!=null){
+		    int[][] data1=(int[][]) temp1.getData();
+		    if (input[2][0]<data1[2][0]){
+			n.setNext(temp1);
+			temp.setNext(n);
+		    }
+		    temp=temp.getNext();
+		    temp1=temp1.getNext();
+		}
+	    }else{
+		last.setNext(n);
+		last=n;
+	    }
 	}
     }
 

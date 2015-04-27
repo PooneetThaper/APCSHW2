@@ -1,16 +1,12 @@
-public class Node<E>{
+public class Node{
     private Node rightChild;
     private Node leftChild;
-    private E data;
-    
-    public Node<E>(){
+    private int data;
+
+    public Node(int input){
+	data=input;
 	rightChild=null;
 	leftChild=null;
-    }
-
-    public Node(E input){
-	data=input;
-	Node();
     }
 
     public void setrightChild(Node n){
@@ -29,11 +25,11 @@ public class Node<E>{
 	return leftChild;
     }
 
-    public void setdata(E data){
+    public void setdata(int data){
 	data=this.data;
     }
 
-    public E getdata(){
+    public int getdata(){
 	return data;
     }
 }

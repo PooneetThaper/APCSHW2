@@ -12,7 +12,6 @@ public class BST{
 	    r=n;
 	    return;
 	}
-	//assumes that root is not null
         while(temp2!=null){
 	    temp1=temp2;
 	    if (i<temp1.getdata())
@@ -70,11 +69,38 @@ public class BST{
 	return ascending(r);
     }
 
+    public void remove(Node t, int i){
+        Node temp1=t;
+	Node temp2=t;
+	while(temp2!=null){
+	    temp1=temp2;
+	    if(i<temp1.getdata()){
+		temp2=temp1.getleftChild();
+		if(temp2.getdata()==i) 
+		    break;
+	    }else if(i>temp1.getdata()){
+		temp2=temp1.getrightChild();
+		if(temp2.getdata()==i) 
+		    break;
+	    }
+	}
+	if(temp2!=null&&temp2.getdata()==i){
+	    if (temp2.getleftChild()==null||
+		temp2.getrightChild()==null){
+		if(temp1.getdata()>temp2.getdata()){
+		    
+		}
+		    
+    }
+
     public static void main(String[] args){
-	BST a=new BST();
+	BST a=new BST();/*
 	a.insert(a.r,5);
 	a.insert(a.r,4);
-	a.insert(a.r,6);
+	a.insert(a.r,6);*/
+	for (int i=0;i<10;i++){
+	    a.insert(a.r,(int)Math.ceil(Math.random()*10));
+	}
 	System.out.println(a.search(a.r,4));
 
 	System.out.println(a.toString());
